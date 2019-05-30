@@ -10,10 +10,10 @@ from importlib_resources import read_text
 conan, _, _ = conan_api.ConanAPIV1.factory()
 
 # Use Conan to install libwebp
-with tempfile.mkdtemp() as tmp_dir:
-    conan.install(path=tmp_dir, cwd=getcwd())
-    with open(path.join(tmp_dir, 'conanbuildinfo.json'), 'r') as f:
-        conan_info = json.load(f)
+tmp_dir = tempfile.mkdtemp()
+conan.install(path=tmp_dir, cwd=getcwd())
+with open(path.join(tmp_dir, 'conanbuildinfo.json'), 'r') as f:
+    conan_info = json.load(f)
 
 # Find header files and libraries in libwebp
 extra_objects = []
